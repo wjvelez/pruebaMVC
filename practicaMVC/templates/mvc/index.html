@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h3>Orders</h3>
+  <label for="filtrar">CustomerID:</label>
+  <input id="txtCustomerID" type="TextField" name="filtrar" value="">
+  <input id="btnBuscar" type="submit" name="filtrar" value="Buscar">
+  <table>
+    <thead>
+      <tr>
+        <td>OrderID</td>
+        <td>CustomerID</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+        <tr>
+          <td>{{ order.orderid }}</td>
+          <td>{{ order.customerid }}</td>
+          <td><a href="{% url 'order_detail' order.orderid %}">detalle</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <script type="text/javascript">
+    function gotourl(){
+      customer = txtCustomerID.value;
+      //window.location.href = '{% url 'index' customer %}' + customer + '/';
+      window.location.href = '{% url 'index'}';
+    }
+
+    function inicializar(){
+      btnBuscar.addEventListener("click", gotourl, false);
+    }
+
+    window.addEventListener("load", inicializar, false);
+  </script>
+{% endblock content %}

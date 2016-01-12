@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h3>Detalle de la orden {{ orderid }}</h3>
+  <table>
+    <thead>
+      <tr>
+        <td>Producto</td>
+        <td>Precio Unitario</td>
+        <td>Cantidad</td>
+        <td>Descuento</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for detail in detail_list %}
+        <tr>
+          <td>{{ detail.productid.productname }}</td>
+          <td>{{ detail.unitprice }}</td>
+          <td>{{ detail.quantity }}</td>
+          <td>{{ detail.discount }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
